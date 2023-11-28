@@ -16,6 +16,11 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @movie.update(movie_params)
     redirect_to movies_path
+
+    respond_to do |format|
+      format.html { redirect_to movies_path }
+      format.text { render partial: "movies/movie_infos", locals: {movies: @movies}, formats: [:html] }
+    end
   end
 
   private

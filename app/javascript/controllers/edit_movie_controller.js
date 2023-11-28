@@ -2,11 +2,11 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="edit-movie"
 export default class extends Controller {
-  static targets = ["infos", "form"];
+  static targets = ["infos", "form", "card"];
 
   connect() {
-    console.log("Movie Info");
-    console.log(this.infosTarget, this.formTarget);
+    // console.log("Movie Info");
+    // console.log(this.infosTarget, this.formTarget);
   }
 
   reveal() {
@@ -16,7 +16,7 @@ export default class extends Controller {
 
   update(event) {
     event.preventDefault();
-    console.log("Update");
+    // console.log("Update");
     const url = `${this.formTarget.action}`;
     fetch(url, {
       method: "PATCH",
@@ -25,8 +25,7 @@ export default class extends Controller {
     })
       .then(response => response.text())
       .then((data) => {
-        this.infosTarget.outerHTML = data;
-        this.reveal();
+        this.cardTarget.outerHTML = data;
       });
   }
 }
